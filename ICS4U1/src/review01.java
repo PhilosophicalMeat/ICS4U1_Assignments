@@ -17,7 +17,7 @@ public class review01{
         String string = "This is a string. Basically text. Can be editted with commands and such";
 
         //Question #4: Declaring Variables
-        int packageOfBottles = 12; //# of bottles
+        int packageOfBottles = 12;
         double packageCost = 3.50;
         String brand = "Pure Life";
 
@@ -48,7 +48,19 @@ public class review01{
             count++;
         }
 
-        //2D-Array
+        //Question #10: 2D-Array
+        int[][] testArray = new int[10][];
+        //Stating the 2D-Array "testArray". The range of this data is 0-9 rows, and 0-2 columns
+
+        int data = 1;//The value of row 0, column 0
+        for (int i = 0; i < 10; i++) {
+            testArray[i] = new int [3];
+            for (int j = 0; j < 3; j++) {
+                testArray[i][j] = data;
+                System.out.println("Row " +i+ ", Column " +j+ ": " +testArray[i][j]); //Printing the value of testArray row 'i', column 'j'
+                data++; //data increases by 1 per column (until it reaches the end of the array)
+            }
+        }
 
     }
 }
