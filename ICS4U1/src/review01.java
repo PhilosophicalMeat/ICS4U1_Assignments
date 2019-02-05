@@ -54,11 +54,11 @@ public class review01{
 
         int data = 1;//The value of row 0, column 0 (the starting point)
         for (int i = 0; i < 10; i++) {
-            testArray[i] = new int [3];
+            testArray[i] = new int [3]; //This basically means "Row 'i' has 3 columns", so the 2D array is auto-generated
             for (int j = 0; j < 3; j++) {
                 testArray[i][j] = data;
                 System.out.println("Row " +i+ ", Column " +j+ ": " +testArray[i][j]); //Printing the value of testArray row 'i', column 'j'
-                data++;
+                data++; //data increases by 1 for every column value (until it reaches the end of the array)
             }
         }
 
