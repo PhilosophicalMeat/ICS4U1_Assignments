@@ -43,5 +43,59 @@ public class review02 {
             }
             System.out.println(vowelReplace[i]);
         }
+
+        //Exercise 4
+        int[] numArray = new int[1000];
+        int data = 1;
+        int remainder;
+        for (int i = 0; i < numArray.length; i++) {
+            numArray[i] = data;
+            data++;
+        }
+        for (int j = 0; j < numArray.length; j++) {
+            remainder = numArray[j] % 3;
+            if(remainder == 0){
+                System.out.println(numArray[j]);
+            }
+        }
+
+        //Exercise 5
+        int[] baseScoreArray = new int[20];
+        int scoreData = 1;
+        int scoreDoubled;
+        int scoreTripled;
+        for (int i = 0; i < baseScoreArray.length; i++) {
+            scoreDoubled = numArray[i]*2;
+            scoreTripled = numArray[i]*3;
+            System.out.println("Base Score: " +numArray[i]+ "   Doubled: " +scoreDoubled+ "     Tripled: " +scoreTripled);
+        }
+
+        //Exercise 6
+        String[][] checkerArray = new String[8][];
+        String boardData;
+        int rowRemainder, colRemainder;
+        for (int i = 0; i < checkerArray.length; i++) {
+            checkerArray[i] = new String [8];
+            for (int j = 0; j < checkerArray[i].length; j++) {
+
+                rowRemainder = i % 2;
+                colRemainder = j % 2;
+                if(rowRemainder > 0 && colRemainder > 0){
+                    System.out.print("white-");
+                }
+                else if(rowRemainder == 0 && colRemainder > 0){
+                    System.out.print("black-");
+                }
+                else if(rowRemainder == 0 && colRemainder == 0){
+                    System.out.print("white-");
+                }
+                else if(rowRemainder > 0 && colRemainder == 0){
+                    System.out.print("black-");
+                }
+                if(j % 8 == 0){
+                    System.out.println();
+                }
+            }
+        }
     }
 }
