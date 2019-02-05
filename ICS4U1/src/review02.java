@@ -97,5 +97,19 @@ public class review02 {
                 }
             }
         }
+
+        //Exercise 7
+        Scanner input = new Scanner(System.in);
+        int value;
+        int[] valueArray = new int[5];
+        for (int i = 0; i < valueArray.length; i++) {
+            System.out.println("Enter value #" +(i+1));
+            valueArray[i] = input.nextInt();
+        }
+        for (int j = 0; j < valueArray.length; j++) {
+            for (int k = 1; k < valueArray.length; k++) {
+               
+            }
+        }
     }
 }
