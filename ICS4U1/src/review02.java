@@ -15,7 +15,26 @@ public class review02 {
             }
         }
 
+        System.out.println();//Spacing the outputs
+
         //Exercise 2
-        String vocalistsArray[] = {"Beyonce (f) ", "David Bowie (m)", "Elvis Costello (m)", ""};
+        String vocalistsArray[] = {"Beyonce (f) ", "David Bowie (m)", "Elvis Costello (m)", "Madonna (f)", "Elton John (m)",
+                "Charles Aznavour (m)"};
+        int vocMale = 0, vocFemale = 0;
+        for (int i = 0; i < vocalistsArray.length; i++) {
+            if(vocalistsArray[i].contains("(m)")){
+                vocMale++;
+            }
+            else if(vocalistsArray[i].contains("(f)")){
+                vocFemale++;
+            }
+        }
+        System.out.println("Male Vocalists: " +vocMale);
+        System.out.println("Female Vocalists: " +vocFemale);
+
+        //Exercise 3
+        String instrumentsArray[] = {"cello", "guitar", "violin", "double bass"};
+        String vowelsArray[] = {"a", "e", "i", "o", "u"};
+        
     }
 }
