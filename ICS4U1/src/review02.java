@@ -35,6 +35,13 @@ public class review02 {
         //Exercise 3
         String instrumentsArray[] = {"cello", "guitar", "violin", "double bass"};
         String vowelsArray[] = {"a", "e", "i", "o", "u"};
-        
+        String vowelReplace[] = new String[instrumentsArray.length];
+        for (int i = 0; i < instrumentsArray.length; i++) {
+            vowelReplace[i] = instrumentsArray[i];
+            for (int j = 0; j < vowelsArray.length; j++) {
+                vowelReplace[i] = vowelReplace[i].replace(vowelsArray[j], "");
+            }
+            System.out.println(vowelReplace[i]);
+        }
     }
 }
