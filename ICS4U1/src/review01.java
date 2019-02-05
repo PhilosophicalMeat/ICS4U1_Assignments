@@ -58,7 +58,7 @@ public class review01{
             for (int j = 0; j < 3; j++) {
                 testArray[i][j] = data;
                 System.out.println("Row " +i+ ", Column " +j+ ": " +testArray[i][j]); //Printing the value of testArray row 'i', column 'j'
-                data++; //data increases by 1 for every column value (until it reaches the end of the array)
+                data++;
             }
         }
 
