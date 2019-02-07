@@ -1,5 +1,6 @@
 import java.lang.String;
 import java.util.Scanner;
+import java.util.Arrays;
 public class review02 {
     public static void main(String[] args) {
         //Exercise 1
@@ -99,18 +100,19 @@ public class review02 {
 
         //Exercise 7
         Scanner input = new Scanner(System.in);
-        String numString;
-        String numStringNew = "";
-        String val = "";
-        System.out.println("Enter 5 integers you wish to sort from least-to-greatest." +
-                "Separate each integer with a '-'. Ex: 1-2-3-4-5");
-        numString = input.nextLine();
-        numString = numString.replace("-"," ");
-        for (int i = 0; i < numString.length(); i++) {
-            int x = numString.charAt(i);
-            int y = numString.charAt(i+1);
-            
+        String intList = "";
+        int intArray[] = new int[5];
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println("Enter value #" +(i+1));
+            intArray[i] = input.nextInt();
         }
+        Arrays.sort(intArray);
+        for (int j = 0; j < intArray.length; j++) {
+            System.out.print(intArray[j]);
+        }
+
+        System.out.println();
+
         //Exercise 8
 
         //Exercise 9
