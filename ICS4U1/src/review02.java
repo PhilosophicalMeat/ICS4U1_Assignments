@@ -92,24 +92,35 @@ public class review02 {
                 else if(rowRemainder > 0 && colRemainder == 0){
                     System.out.print("black-");
                 }
-                if(j % 8 == 0){
+                if(j % 8 == 0 && i > 0 && i < 9){
                     System.out.println();
                 }
             }
         }
 
+        System.out.println();
+
         //Exercise 7
-        Scanner input = new Scanner(System.in);
-        int value;
+        /*Scanner input = new Scanner(System.in);
+        String numString;
+        String numStringNew;
+        char numStringVal;
         int[] valueArray = new int[5];
-        for (int i = 0; i < valueArray.length; i++) {
-            System.out.println("Enter value #" +(i+1));
-            valueArray[i] = input.nextInt();
-        }
-        for (int j = 0; j < valueArray.length; j++) {
-            for (int k = 1; k < valueArray.length; k++) {
-               
+        System.out.println("Enter 5 integers you wish to sort from least-to-greatest." + 
+                "Separate each integer with a '-'. Ex: 1-2-3-4-5");
+        numString = input.nextLine();
+        numStringNew = numString.replace("-","");
+        for (int i = 0; i < numStringNew.length(); i++) {
+            for (int j = 1; j < numStringNew.length(); j++) {
+                if(numStringNew.charAt(i) > numStringNew.charAt(j) && i!=j){
+                    char temp = numStringNew.charAt(i);
+                    char temp2 = numStringNew.charAt(j);
+
+                }
             }
-        }
+        }*/
+
+        //Exercise 8
+        
     }
 }
