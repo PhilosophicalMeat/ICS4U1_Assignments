@@ -71,55 +71,46 @@ public class review02 {
         }
 
         //Exercise 6
-        String[][] checkerArray = new String[8][];
+        int length = 8;
         String boardData;
-        int rowRemainder, colRemainder;
-        for (int i = 0; i < checkerArray.length; i++) {
-            checkerArray[i] = new String [8];
-            for (int j = 0; j < checkerArray[i].length; j++) {
-
-                rowRemainder = i % 2;
-                colRemainder = j % 2;
-                if(rowRemainder > 0 && colRemainder > 0){
+        int rowRem, colRem;
+        for (int i = 1; i < 8; i++) {
+            for (int j = 1; j < 8; j++) {
+                rowRem = i&2;
+                colRem = j&2;
+                if(rowRem > 0 && colRem > 0){
                     System.out.print("white-");
                 }
-                else if(rowRemainder == 0 && colRemainder > 0){
+                else if(rowRem > 0 && colRem == 0){
                     System.out.print("black-");
                 }
-                else if(rowRemainder == 0 && colRemainder == 0){
+                else if(rowRem == 0 && colRem == 0){
                     System.out.print("white-");
                 }
-                else if(rowRemainder > 0 && colRemainder == 0){
+                else if(rowRem == 0 && colRem > 0) {
                     System.out.print("black-");
-                }
-                if(j % 8 == 0 && i > 0 && i < 9){
-                    System.out.println();
                 }
             }
+            System.out.println();
         }
+
 
         System.out.println();
 
         //Exercise 7
-        /*Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         String numString;
-        String numStringNew;
-        char numStringVal;
-        int[] valueArray = new int[5];
-        System.out.println("Enter 5 integers you wish to sort from least-to-greatest." + 
+        String numStringNew = "";
+        String val = "";
+        System.out.println("Enter 5 integers you wish to sort from least-to-greatest." +
                 "Separate each integer with a '-'. Ex: 1-2-3-4-5");
         numString = input.nextLine();
-        numStringNew = numString.replace("-","");
-        for (int i = 0; i < numStringNew.length(); i++) {
-            for (int j = 1; j < numStringNew.length(); j++) {
-                if(numStringNew.charAt(i) > numStringNew.charAt(j) && i!=j){
-                    char temp = numStringNew.charAt(i);
-                    char temp2 = numStringNew.charAt(j);
-
-                }
-            }
-        }*/
-
+        numString = numString.replace("-"," ");
+        for (int i = 0; i < numString.length(); i++) {
+            int x = numString.charAt(i);
+            int y = numString.charAt(i+1);
+            
+        }
         //Exercise 8
 
         //Exercise 9
@@ -133,14 +124,16 @@ public class review02 {
         System.out.println();
 
         //Exercise 10
-        int x = 0;
+        /*int x = 0;
         String results = "Manchester United 1 Chelsea 0, Arsenal 1 Manchester United 1, Manchester United 3 Fulham 1, " +
                 "Liverpool 2 Manchester United 1, Swansea 2 Manchester United 4";
         for (int i = 0; i < results.length(); i++) {
             if(results.charAt(i) == ','){
+
                 x++;
             }
         }
         String[] matchArray = new String[x+1];
+*/
     }
 }
