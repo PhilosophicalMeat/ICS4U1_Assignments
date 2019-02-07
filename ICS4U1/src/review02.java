@@ -121,6 +121,14 @@ public class review02 {
         }*/
 
         //Exercise 8
-        
+
+        //Exercise 9
+        String diagonal = "DIAGONAL";
+        String spc = "";
+        for (int i = 0; i < diagonal.length(); i++) {
+            System.out.println(spc + diagonal.charAt(i));
+            spc = spc.concat(" ");
+        }
+
     }
 }
