@@ -130,5 +130,17 @@ public class review02 {
             spc = spc.concat(" ");
         }
 
+        System.out.println();
+
+        //Exercise 10
+        int x = 0;
+        String results = "Manchester United 1 Chelsea 0, Arsenal 1 Manchester United 1, Manchester United 3 Fulham 1, " +
+                "Liverpool 2 Manchester United 1, Swansea 2 Manchester United 4";
+        for (int i = 0; i < results.length(); i++) {
+            if(results.charAt(i) == ','){
+                x++;
+            }
+        }
+        String[] matchArray = new String[x+1];
     }
 }
