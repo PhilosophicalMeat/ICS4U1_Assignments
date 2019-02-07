@@ -98,7 +98,7 @@ public class review02 {
 
         System.out.println();
 
-        //Exercise 7
+        //Exercise 7 & 8
         Scanner input = new Scanner(System.in);
         String intList = "";
         int intArray[] = new int[5];
@@ -108,7 +108,12 @@ public class review02 {
         }
         Arrays.sort(intArray);
         for (int j = 0; j < intArray.length; j++) {
-            System.out.print(intArray[j]);
+            System.out.println(intArray[j]);
+            for (int k = 1; k < intArray.length; k++) {
+                if(intArray[j] == intArray[k] && j != k){
+                    System.out.println("Pair of numbers detected");
+                }
+            }
         }
 
         System.out.println();
