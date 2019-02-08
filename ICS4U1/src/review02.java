@@ -133,12 +133,43 @@ public class review02 {
         int x = 0;
         String results = "Manchester United 1 Chelsea 0, Arsenal 1 Manchester United 1, Manchester United 3 Fulham 1, " +
                 "Liverpool 2 Manchester United 1, Swansea 2 Manchester United 4";
-        results.replace("Manchester United", "MU");
-
-        for (int i = 0; i < results.length(); i++) {
-            for (int j = 0; j < results.length(); j++) {
-
-                }
+        String[] gamesArray = results.split(",");
+        String[] numsArray = new String[5];
+        int[] mScore = new int[5];
+        int[] oScore = new int[5];
+        int wins = 0;
+        int loss = 0;
+        int ties = 0;
+        int mTotal = 0;
+        int oTotal = 0;
+        int points = 0;
+        for (int i = 0; i < gamesArray.length; i++) {
+            numsArray[i] = gamesArray[i].replaceAll("[^0-9]", "");
+            mScore[i] = Integer.parseInt(numsArray[i].substring(0,1));
+            oScore[i] = Integer.parseInt(numsArray[i].substring(1,2));
+        }
+        for (int i = 0; i < 5; i++) {
+            if(mScore[i] > oScore[i]){
+                wins++;
             }
+            else if(mScore[i] == oScore[i]){
+                loss++;
+            }
+            else{
+                ties++;
+            }
+        }
+        for (int i = 0; i < mScore.length; i++) {
+            mTotal += mScore[i];
+            oTotal += oScore[i];
+        }
+        points = wins * 3 + ties;
+        System.out.println("Number of Wins = " + wins);
+        System.out.println("Number of Draws = " + ties);
+        System.out.println("Number of Losses = " + loss);
+        System.out.println("Goals For = " + mTotal);
+        System.out.println("Goals Against = " + oTotal);
+        System.out.println("Number of Points = " + points);
+
     }
 }
