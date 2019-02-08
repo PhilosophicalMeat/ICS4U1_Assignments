@@ -106,19 +106,18 @@ public class review02 {
             System.out.println("Enter value #" +(i+1));
             intArray[i] = input.nextInt();
         }
+        System.out.println();
         Arrays.sort(intArray);
         for (int j = 0; j < intArray.length; j++) {
             System.out.println(intArray[j]);
             for (int k = 1; k < intArray.length; k++) {
-                if(intArray[j] == intArray[k] && j != k){
-                    System.out.println("Pair of numbers detected");
+                if(intArray[j] == intArray[k] && j < k){
+                    System.out.println("Pair of numbers detected (" +intArray[j]+ ")");
                 }
             }
         }
 
         System.out.println();
-
-        //Exercise 8
 
         //Exercise 9
         String diagonal = "DIAGONAL";
@@ -131,16 +130,15 @@ public class review02 {
         System.out.println();
 
         //Exercise 10
-        /*int x = 0;
+        int x = 0;
         String results = "Manchester United 1 Chelsea 0, Arsenal 1 Manchester United 1, Manchester United 3 Fulham 1, " +
                 "Liverpool 2 Manchester United 1, Swansea 2 Manchester United 4";
-        for (int i = 0; i < results.length(); i++) {
-            if(results.charAt(i) == ','){
+        results.replace("Manchester United", "MU");
 
-                x++;
+        for (int i = 0; i < results.length(); i++) {
+            for (int j = 0; j < results.length(); j++) {
+
+                }
             }
-        }
-        String[] matchArray = new String[x+1];
-*/
     }
 }
