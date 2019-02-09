@@ -1,3 +1,4 @@
+import javax.xml.bind.SchemaOutputResolver;
 import java.lang.String;
 import java.util.Scanner;
 public class review03 {
@@ -120,7 +121,32 @@ public class review03 {
             }
         }
 
-        //
+        //The '? : ' Operator: Integer Example
+        int indepVar, depVarOne, depVarTwo, finalVar; //Declaring the independent and dependent variables
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter the value of the independent variable");
+        indepVar = reader.nextInt(); //Assigning a value to the independent variable
+        System.out.println("The final value if the independent value is less than or equal to 10?");
+        depVarOne = reader.nextInt(); //Declaring the resulting value if the independent variable is less than or equal to 10
+        System.out.println("If the independent value is greater than 10?");
+        depVarTwo = reader.nextInt(); //Declaring the resulting value if the independent variable is greater than 10
+        finalVar = (indepVar <= 10) ? depVarOne : depVarTwo; //Conditional operator
+        System.out.println("Resulting value: " +finalVar); // Printing the resulting value
+
+        //The '? : ' Operator: String Example
+        String inputVar, targetVar, resultString; //Stating the input and target variable
+
+        boolean targetFound;
+        System.out.println("Enter the independent string");
+        inputVar = reader.nextLine(); //Stating independent string. Re-using 'reader' function from previous code
+        System.out.println("Enter the target character or string");
+        targetVar = reader.nextLine(); //Stating target character or string
+        targetFound = (inputVar.contains(targetVar)) ? true : false;
+        resultString = (targetFound == true) ? "Target '"+targetVar+"' located in text" : "Target not found in text"; //Determining printed response
+        System.out.println(resultString);
+
+
+
 
 
     }
