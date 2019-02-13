@@ -16,7 +16,7 @@ public class SimpleMethods {
         outln(6);
         outln(.667);
         outln("there areeeee noooooo striiinnngggsss ooonn mmeeeee");
-        
+
     }
     //out methods
     public static void out (int iNumberToPrint){
