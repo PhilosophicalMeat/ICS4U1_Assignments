@@ -20,6 +20,14 @@ public class SimpleMethods {
         testPrimeNumber(12);
         testPrimeNumber(17);
         testPrimeNumber(6);
+        //boolean commands for identifying prime number (needs to be fixed)
+        testPrimeNumber(9);
+        
+        //lowest common multiple command
+        System.out.println(lcm(12,8));
+
+        //greatest common factor command
+        /*System.out.println(gcf(20,12));*/
     }
 
     //out methods
@@ -47,11 +55,39 @@ public class SimpleMethods {
     public static void outln(String sLineToPrint) {
         System.out.println(sLineToPrint); //prints string on new line
     }
-    //tests for prime number
-    public static void testPrimeNumber(int iTestPrime){
-        int pTestOne = iTestPrime % 2;
-        int pTestTwo = iTestPrime % 3;
-        String pResult = (pTestOne != 0 && pTestTwo != 0 && iTestPrime > 3) ? iTestPrime+" is a prime number" : iTestPrime+" is NOT a prime number";
-        System.out.println(pResult);
+
+    //boolean method for identifying prime numbers
+    public static void testPrimeNumber (int iNumberToTest)
+    {
+        boolean isPrime = false;
+        for(int i = 2; i <= iNumberToTest/2; ++i)
+        {
+            // nonprime
+            if(iNumberToTest % i == 0)
+            {
+                isPrime = true;
+                break;
+            }
+        }
+        if (!isPrime)
+            System.out.println(iNumberToTest + " is a prime number.");
+        else
+            System.out.println(iNumberToTest + " is not a prime number.");
     }
+
+    //method for identifying lowest common multiple of two integers
+    public static int lcm(int number1, int number2) {
+        for (int i = 1; ; i++) {
+            if (i % number1 == 0 && i % number2 == 0) {
+                return i;
+            }
+        }
+    }
+
+    //Greatest Common Factor Method
+    /*public static int gcf(int number1, int number2) {
+
+    }*/
+
+
 }
