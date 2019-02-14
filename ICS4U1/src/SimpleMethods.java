@@ -22,12 +22,15 @@ public class SimpleMethods {
         testPrimeNumber(6);
         //boolean commands for identifying prime number (needs to be fixed)
         testPrimeNumber(9);
-        
+
         //lowest common multiple command
         System.out.println(lcm(12,8));
 
         //greatest common factor command
-        /*System.out.println(gcf(20,12));*/
+        System.out.println(gcf(6,3));
+
+        //rounded double commanded
+        System.out.println(myRound(1243.1387,2));
     }
 
     //out methods
@@ -85,9 +88,31 @@ public class SimpleMethods {
     }
 
     //Greatest Common Factor Method
-    /*public static int gcf(int number1, int number2) {
+    public static int gcf(int number1, int number2) {
+        int count = 0;
+        int factor = 0;
+        if(Math.max(number1,number2)%Math.min(number1,number2) == 0){
+            return Math.min(number1,number2);
+        }
+        else {
+            for (int i = 1; i < Math.min(number1, number2); i++) {
+                if(number1%i != 0 || number2%i !=0){
+                    continue;
+                }
+                else if(number1%i == 0 && number2%i ==0){
+                    factor = i;
+                }
+            }
+            return factor;
+        }
+    }
 
-    }*/
+    //rounding method
+    public static double myRound(double number1, int number2){
+        double roundedVal = Math.round(number1*(Math.pow(10,number2))); //multplies by desired # of decimals
+        double resultVal = roundedVal/(Math.pow(10,number2));
+        return resultVal;
+    }
 
 
 }
