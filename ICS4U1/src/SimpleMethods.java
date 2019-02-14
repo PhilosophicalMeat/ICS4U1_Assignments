@@ -31,6 +31,12 @@ public class SimpleMethods {
 
         //rounded double commanded
         System.out.println(myRound(1243.1387,2));
+
+        //pad right string command
+        System.out.println(padRString("there are no strings on me",12));
+
+        //pad left string command
+        System.out.println(padLString("all your base are", 6));
     }
 
     //out methods
@@ -114,5 +120,20 @@ public class SimpleMethods {
         return resultVal;
     }
 
+    //string pad right method
+    public static String padRString (String sPhrase, int iWidth){
+        for (int i = iWidth; i < sPhrase.length(); i++) {
+            sPhrase.replace(sPhrase.charAt(i), 'i');
+        }
+        return sPhrase;
+    }
+
+    //string pad left method
+    public static String padLString(String sPhrase, int iWidth){
+        for (int i = 0; i < iWidth-1; i++) {
+            sPhrase.replace(sPhrase.charAt(i), ' ');
+        }
+        return sPhrase;
+    }
 
 }
