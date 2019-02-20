@@ -5,10 +5,10 @@ public class AdvancedMethods {
         Scanner input = new Scanner(System.in);
         int iAge;
         double dAge;
-        //age integer input
+        //age double (decimal value) input
         System.out.println("Enter your age in years");
         dAge = input.nextDouble();
-        
+
 
         /*//age range integer method call
         double iMoviePrice = (inRange(iAge, 14,64)) ? 10.50 : 7.99;
@@ -47,4 +47,5 @@ public class AdvancedMethods {
     public static boolean inRange(float fValue, int min, int max){
         return (fValue > min && fValue < max);
     }
+
 }

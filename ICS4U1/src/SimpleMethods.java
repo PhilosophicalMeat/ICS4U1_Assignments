@@ -12,6 +12,7 @@ public class SimpleMethods {
         out(" string to cut # ");
         out(2);
         out(" There are no strings on me");
+        
         //outln commands
         outln(6);
         outln(.667);
@@ -20,8 +21,10 @@ public class SimpleMethods {
         testPrimeNumber(12);
         testPrimeNumber(17);
         testPrimeNumber(6);
+
         //boolean commands for identifying prime number (needs to be fixed)
-        testPrimeNumber(9);
+        String sIsPrimeNumber = (isPrimeNumber(7)? "Is prime" : "Is NOT prime");
+        System.out.println(sIsPrimeNumber);
 
         //lowest common multiple command
         System.out.println(lcm(12,8));
@@ -65,25 +68,20 @@ public class SimpleMethods {
         System.out.println(sLineToPrint); //prints string on new line
     }
 
-    //boolean method for identifying prime numbers
-    public static void testPrimeNumber (int iNumberToTest)
-    {
-        boolean isPrime = false;
-        for(int i = 2; i <= iNumberToTest/2; ++i)
-        {
-            // nonprime
-            if(iNumberToTest % i == 0)
-            {
-                isPrime = true;
-                break;
-            }
+    //void method for identifying prime numbers
+    public static void testPrimeNumber (int iNumberToTest) {
+        if(iNumberToTest%2 == 0 && iNumberToTest%3 == 0){
+            System.out.println(iNumberToTest+ " is prime");
         }
-        if (!isPrime)
-            System.out.println(iNumberToTest + " is a prime number.");
-        else
-            System.out.println(iNumberToTest + " is not a prime number.");
+        else{
+            System.out.println(iNumberToTest+ " is NOT a prime number");
+        }
     }
 
+    //boolean method for identifying prime numbers
+    public static boolean isPrimeNumber(int iNumberToTest){
+        return(iNumberToTest%2 == 0 && iNumberToTest%3 == 0);
+    }
     //method for identifying lowest common multiple of two integers
     public static int lcm(int number1, int number2) {
         for (int i = 1; ; i++) {
