@@ -9,7 +9,7 @@ public class AdvancedMethods {
         //age double (decimal value) input
         System.out.println("Enter your age in years");
         sAge = input.nextLine();
-        if(parseIt)
+        
 
 
         /*//age range integer method call
@@ -49,6 +49,5 @@ public class AdvancedMethods {
     public static boolean inRange(float fValue, int min, int max){
         return (fValue > min && fValue < max);
     }
-    //TEST: parse int method
 
 }

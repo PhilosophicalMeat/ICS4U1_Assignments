@@ -70,12 +70,12 @@ public class SimpleMethods {
 
     //void method for identifying prime numbers
     public static void testPrimeNumber (int iNumberToTest) {
-        if(iNumberToTest%2 > 0 && iNumberToTest%3 > 0){
-            System.out.println(iNumberToTest+ " is prime");
+        int count = 0;
+        for (int i = 2; i < iNumberToTest; i++) {
+            if(iNumberToTest%i == 0) count++;
         }
-        else{
-            System.out.println(iNumberToTest+ " is NOT a prime number");
-        }
+        if(count == 0) System.out.println(iNumberToTest+ " is a prime number");
+        else System.out.println(iNumberToTest+ " is NOT a prime number");
     }
 
     //boolean method for identifying prime numbers
