@@ -5,9 +5,11 @@ public class AdvancedMethods {
         Scanner input = new Scanner(System.in);
         int iAge;
         double dAge;
+        String sAge;
         //age double (decimal value) input
         System.out.println("Enter your age in years");
-        dAge = input.nextDouble();
+        sAge = input.nextLine();
+        if(parseIt)
 
 
         /*//age range integer method call
@@ -47,5 +49,6 @@ public class AdvancedMethods {
     public static boolean inRange(float fValue, int min, int max){
         return (fValue > min && fValue < max);
     }
+    //TEST: parse int method
 
 }

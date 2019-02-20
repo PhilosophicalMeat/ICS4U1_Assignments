@@ -12,7 +12,7 @@ public class SimpleMethods {
         out(" string to cut # ");
         out(2);
         out(" There are no strings on me");
-        
+
         //outln commands
         outln(6);
         outln(.667);
@@ -70,7 +70,7 @@ public class SimpleMethods {
 
     //void method for identifying prime numbers
     public static void testPrimeNumber (int iNumberToTest) {
-        if(iNumberToTest%2 == 0 && iNumberToTest%3 == 0){
+        if(iNumberToTest%2 > 0 && iNumberToTest%3 > 0){
             System.out.println(iNumberToTest+ " is prime");
         }
         else{
@@ -80,7 +80,11 @@ public class SimpleMethods {
 
     //boolean method for identifying prime numbers
     public static boolean isPrimeNumber(int iNumberToTest){
-        return(iNumberToTest%2 == 0 && iNumberToTest%3 == 0);
+        for (int i = 2; i < iNumberToTest; i++) {
+            if(iNumberToTest%i == 0) return false;
+            else return true;
+        }
+        return true;
     }
     //method for identifying lowest common multiple of two integers
     public static int lcm(int number1, int number2) {
