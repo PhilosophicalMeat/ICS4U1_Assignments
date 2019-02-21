@@ -3,24 +3,34 @@ import java.lang.String;
 public class AdvancedMethods {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int iAge;
         double dAge;
-        String sAge;
         //age double (decimal value) input
         System.out.println("Enter your age in years");
-        sAge = input.nextLine();
-        
+        dAge = input.nextInt();
 
+        //movie price age range method
+        double dMoviePrice = (inRange(dAge,14,64)) ? 10.50 : 7.99;
+        System.out.println("Movie Price: $" +dMoviePrice);
 
-        /*//age range integer method call
-        double iMoviePrice = (inRange(iAge, 14,64)) ? 10.50 : 7.99;
-        System.out.println("Price: $" +iMoviePrice);
+        //command for legal drinking
+        String canDrink = (inRange(dAge,0,19)) ? "Can't drink" : "Can drink";
+        System.out.println(canDrink);
 
-        //age double input
-        double dAge;
-        System.out.println("Enter your age in years (estimate to the nearest tenth)");
-        dAge = input.nextDouble();
-        double dMoviePrice = (inRange(dAge,14,64)) ? 10.50 : 7.99;*/
+        //command for age to vote
+        String canVote = (inRange(dAge, 0,18)) ? "Can't vote" : "Can vote";
+        System.out.println(canVote);
+
+        //command for joining army
+        String canJoinArmy = (inRange(dAge, 0 ,15)) ? "Can't join the army" : "Can join the army";
+        System.out.println(canJoinArmy);
+
+        //command for licence in alberta
+        String canGetLicence = (inRange(dAge, 0, 15)) ? "Can't drive" : "Can Drive";
+        System.out.println(canGetLicence);
+
+        //command for being home alone
+        String canStayHomeAlone = (inRange(dAge,0,15)) ? "Can't stay home alone" : "Can stay home alone";
+        System.out.println(canStayHomeAlone);
 
 
 
@@ -49,5 +59,4 @@ public class AdvancedMethods {
     public static boolean inRange(float fValue, int min, int max){
         return (fValue > min && fValue < max);
     }
-
 }
