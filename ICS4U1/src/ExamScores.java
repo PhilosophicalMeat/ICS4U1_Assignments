@@ -1,10 +1,10 @@
-import java.lang.String;
-import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 
 public class ExamScores {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        File examData = new File("C:\\Users\\Ethan\\Desktop\\ExamDataFile.txt");
+        BufferedReader bReader = new BufferedReader(new FileReader(examData));
+        
 
     }
 }
