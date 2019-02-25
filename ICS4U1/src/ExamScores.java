@@ -1,10 +1,53 @@
 import java.io.*;
-
+import java.util.Scanner;
 public class ExamScores {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         File examData = new File("C:\\Users\\Ethan\\Desktop\\ExamDataFile.txt");
-        BufferedReader bReader = new BufferedReader(new FileReader(examData));
-        
+        Scanner scanner = new Scanner(examData);
+        String answers = "FTFFTFFTFT";
+        String[] sDataArray = new String[14];
+        fillArray(scanner, sDataArray);
+        System.out.println(sDataArray[0]);
+        System.out.println(sDataArray[13]);
+        String[] sAnswersArray = new String[14];
+        for (int i = 0; i <sAnswersArray.length ; i++) {
+            sAnswersArray[i] = sDataArray[i].substring(5);
+        }
+        System.out.println(sAnswersArray[0]);
+        //seperating IDs
+        String[] idArray = new String[14];
+        splitArray(sDataArray,idArray);
+        //finding marks
+        double[] examMarks = new double[14];
+        checkMark(sAnswersArray,answers,examMarks);
+        System.out.println("Student ID: " +idArray[1]+ "    Mark: " +examMarks[1]);
 
+
+    }
+    //method for finding #of lines in a txt file & filling an array
+    public static void fillArray(Scanner fileCheck, String[] array){
+        int i = 0;
+        while(fileCheck.hasNext()){
+            array[i] = fileCheck.nextLine();
+            i++;
+        }
+    }
+    //method for dividing student number and score
+    public static String[] splitArray(String[] sArrayOne, String[] sArrayTwo){
+        for (int i = 0; i < sArrayOne.length; i++) {
+            sArrayTwo[i] = sArrayOne[i].substring(0,4);
+        }
+         return sArrayTwo;
+    }
+    //method for determing student mark
+    public static void checkMark(String[] sAnswers, String acAnswers, double[] iArray){
+        double count = 0;
+        for (int i = 0; i < sAnswers.length; i++) {
+            for (int j = 0; j < sAnswers[i].length(); j++) {
+                if (sAnswers[i].charAt(j) == acAnswers.charAt(j)) count+=1;
+            }
+            iArray[i] = count/10;
+            count = 0;
+        }
     }
 }
