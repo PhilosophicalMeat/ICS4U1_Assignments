@@ -106,5 +106,5 @@ public class ExamScores {
         double average = total/dArray.length;
         return average;
     }
-    
+
 }
