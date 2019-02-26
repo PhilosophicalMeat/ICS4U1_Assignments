@@ -20,7 +20,19 @@ public class ExamScores {
         //finding marks
         double[] examMarks = new double[14];
         checkMark(sAnswersArray,answers,examMarks);
-        System.out.println("Student ID: " +idArray[1]+ "    Mark: " +examMarks[1]);
+        System.out.println("TEST - Student ID: " +idArray[1]+ "    Mark: " +examMarks[1]);
+        //finding highest mark
+        System.out.println("max value: " +findMax(examMarks));
+        //finding lowest mark
+        System.out.println("minimum value: " +findMin(examMarks));
+        //class average
+        System.out.println("average: " +average(examMarks));
+        //printing in table
+        for (int i = 0; i < 13; i++) {
+            System.out.println("Student ID: " +idArray[i]+ "    Score: " +examMarks[i]+ "   Mark: " +(examMarks[i]*100)+ "%");
+        }
+
+
 
 
     }
@@ -50,4 +62,49 @@ public class ExamScores {
             count = 0;
         }
     }
+    //method for finding best score
+    public static double findMax(double[] dArray){
+        double max = dArray[0];
+        for (int i = 0; i < dArray.length; i++) {
+            for (int j = 1; j < dArray.length; j++) {
+                if(dArray[j] > dArray[i]){
+                    max = j;
+                }
+            }
+        }
+        return max;
+    }
+    public static double findMin(double[] dArray){
+        double min = dArray[0];
+        for (int i = 0; i < dArray.length; i++) {
+            for (int j = 0; j < dArray.length; j++) {
+                if(dArray[j] > dArray[i]){
+                    min = j;
+                }
+            }
+        }
+        return min;
+    }
+    //finding most frequent score
+    public static void mostCommonMark(double[] dArray){
+        double[] countArray = new double[dArray.length];
+        for (int i = 0; i < countArray.length; i++) {
+            for (int j = 0; j < dArray.length; j++) {
+                if (dArray[i] == dArray[i + 1] && i != dArray.length - 1) {
+                    countArray[i]++;
+                }
+            }
+        }
+        System.out.println("Most common: " +findMax(countArray));
+    }
+    //find average
+    public static double average(double[] dArray){
+        double total = 0;
+        for (int i = 0; i < dArray.length; i++) {
+            total+= dArray[i];
+        }
+        double average = total/dArray.length;
+        return average;
+    }
+    
 }
