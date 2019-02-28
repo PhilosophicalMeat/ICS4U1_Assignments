@@ -33,7 +33,21 @@ public class ExamScores {
         }
         //most frequent score
         System.out.println("Most Frequent score: " +(frequentScore(examMarks)*100)+ "%");
-        //
+        //most frequent grade
+        System.out.println("Most frequent grade: " +frequentGradeScore(examMarks));
+        //tallying grades
+        System.out.println("Class Grades: ");
+        studentGrades(examMarks);
+        //finding students who got 100%
+        int count = 0;
+        for (int i = 0; i < examMarks.length; i++) {
+            if(examMarks[i] == 1.0) count +=1;
+        }
+        System.out.println("Students who got 100% : " +count);
+        //finding best answered question
+
+        //finding worst answered question
+
     }
     //method for finding #of lines in a txt file & filling an array
     public static void fillArray(Scanner fileCheck, String[] array){
@@ -129,6 +143,31 @@ public class ExamScores {
             }
         }
         return (scoreArray[findMax(countArray)]);
+    }
+    //most frequent letter grade method
+    public static String frequentGradeScore(double[] dArray){
+        double score = frequentScore(dArray);
+        String grade = "";
+        if(score >= 0.9) grade = "A";
+        if(score == 0.8) grade = "B";
+        if(score == 0.7) grade = "C";
+        if(score <= 0.6) grade = "F";
+        return grade;
+    }
+    //tallying student marks
+    public static void studentGrades(double[]dArray){
+        int[] gradeArray = new int[4];
+        for (int i = 0; i < dArray.length; i++) {
+            double score = dArray[i];
+            if(score >= 0.9) gradeArray[0] +=1;
+            if(score == 0.8) gradeArray[1] +=1;
+            if(score == 0.7) gradeArray[2] +=1;
+            if(score <= 0.6) gradeArray[3] +=1;
+        }
+        System.out.println("Students with A's: " + gradeArray[0]);
+        System.out.println("Students with B's: " + gradeArray[1]);
+        System.out.println("Students with C's: " + gradeArray[2]);
+        System.out.println("Students with F's: " + gradeArray[3]);
     }
 
 }
