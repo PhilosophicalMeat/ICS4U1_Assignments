@@ -31,10 +31,9 @@ public class ExamScores {
         for (int i = 0; i < 13; i++) {
             System.out.println("Student ID: " +idArray[i]+ "    Score: " +examMarks[i]+ "   Mark: " +(examMarks[i]*100)+ "%");
         }
-
-
-
-
+        //most frequent score
+        System.out.println("Most Frequent score: " +(frequentScore(examMarks)*100)+ "%");
+        //
     }
     //method for finding #of lines in a txt file & filling an array
     public static void fillArray(Scanner fileCheck, String[] array){
@@ -105,6 +104,31 @@ public class ExamScores {
         }
         double average = total/dArray.length;
         return average;
+    }
+    //find max INT method
+    public static int findMax(int[] iArray){
+        int max = iArray[0];
+        for (int i = 0; i < iArray.length; i++) {
+            for (int j = 1; j < iArray.length; j++) {
+                if(iArray[j] > iArray[i]){
+                    max = j;
+                }
+            }
+        }
+        return max;
+    }
+    //find most frequent score
+    public static double frequentScore(double[] dArray){
+        double[] scoreArray = {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0};
+        int[] countArray = new int[11];
+        for (int i = 0; i < dArray.length; i++) {
+            for (int j = 0; j < scoreArray.length; j++) {
+                if(dArray[i] == scoreArray[j]){
+                    countArray[j] += 1;
+                }
+            }
+        }
+        return (scoreArray[findMax(countArray)]);
     }
 
 }
