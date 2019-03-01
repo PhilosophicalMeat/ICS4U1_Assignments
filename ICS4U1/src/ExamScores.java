@@ -191,8 +191,15 @@ public class ExamScores {
                 }
             }
         }
-        int best = findMax(count);
-        return best;
+        int max = count[0];
+        for (int i = 0; i < count.length; i++) {
+            for (int j = 1; j < count.length; j++) {
+                if(count[j] > count[i]){
+                    max = j;
+                }
+            }
+        }
+        return max;
     }
     //method for finding worst answered question
     public static int worstAnswered(String[] sArray, String answers){
@@ -204,7 +211,14 @@ public class ExamScores {
                 }
             }
         }
-        int worst = findMin(count);
-        return worst;
+        int min = count[0];
+        for (int i = 0; i < count.length; i++) {
+            for (int j = 1; j < count.length; j++) {
+                if(count[j] < count[i]){
+                    min = j;
+                }
+            }
+        }
+        return min;
     }
 }
