@@ -45,8 +45,9 @@ public class ExamScores {
         }
         System.out.println("Students who got 100% : " +count);
         //finding best answered question
-
+        System.out.println(bestAnswered(sAnswersArray, answers));
         //finding worst answered question
+        System.out.println("Worst answered: " +worstAnswered(sAnswersArray, answers));
 
     }
     //method for finding #of lines in a txt file & filling an array
@@ -91,8 +92,19 @@ public class ExamScores {
         double min = dArray[0];
         for (int i = 0; i < dArray.length; i++) {
             for (int j = 0; j < dArray.length; j++) {
-                if(dArray[j] > dArray[i]){
-                    min = j;
+                if(dArray[j] < dArray[i]){
+                    min = dArray[j];
+                }
+            }
+        }
+        return min;
+    }
+    public static int findMin(int[] iArray){
+        int min = iArray[0];
+        for (int i = 0; i < iArray.length; i++) {
+            for (int j = 0; j < iArray.length; j++) {
+                if(iArray[j] < iArray[i]){
+                    min = iArray[j];
                 }
             }
         }
@@ -169,5 +181,30 @@ public class ExamScores {
         System.out.println("Students with C's: " + gradeArray[2]);
         System.out.println("Students with F's: " + gradeArray[3]);
     }
-
+    //method for finding best answered question
+    public static int bestAnswered(String[] sArray, String answers){
+        int[] count = new int[answers.length()];
+        for (int i = 0; i < answers.length(); i++) {
+            for (int j = 0; j < sArray.length; j++) {
+                if(sArray[j].charAt(i) == answers.charAt(i)){
+                    count[i] += 1;
+                }
+            }
+        }
+        int best = findMax(count);
+        return best;
+    }
+    //method for finding worst answered question
+    public static int worstAnswered(String[] sArray, String answers){
+        int[] count = new int[answers.length()];
+        for (int i = 0; i < answers.length(); i++) {
+            for (int j = 0; j < sArray.length; j++) {
+                if(sArray[j].charAt(i) != answers.charAt(i)){
+                    count[i] += 1;
+                }
+            }
+        }
+        int worst = findMin(count);
+        return worst;
+    }
 }
