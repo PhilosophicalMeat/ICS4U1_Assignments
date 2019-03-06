@@ -45,7 +45,7 @@ public class ExamScores {
         }
         System.out.println("Students who got 100% : " +count);
         //finding best answered question
-        System.out.println(bestAnswered(sAnswersArray, answers));
+        System.out.println("Best answered: " +bestAnswered(sAnswersArray, answers));
         //finding worst answered question
         System.out.println("Worst answered: " +worstAnswered(sAnswersArray, answers));
 
@@ -195,7 +195,7 @@ public class ExamScores {
         for (int i = 0; i < count.length; i++) {
             for (int j = 1; j < count.length; j++) {
                 if(count[j] > count[i]){
-                    max = j;
+                    max = j+1; //needs to be plus one because the program runs from 0-9, so add one
                 }
             }
         }
