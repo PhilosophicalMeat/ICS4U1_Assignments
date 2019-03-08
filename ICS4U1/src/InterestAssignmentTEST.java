@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.*;
 public class InterestAssignmentTEST {
     public static void main(String[] args) throws IOException{
-        File dataFile = new File("C:\\Users\\Ethan\\Desktop\\Project01Data (1)");
+        File dataFile = new File("C:\\Users\\Ethan\\Desktop\\Project01Data.txt");
         Scanner fileCheck = new Scanner(dataFile);
+        fillArray(fileCheck);
+        parse();
 
 
     }
@@ -16,7 +18,7 @@ public class InterestAssignmentTEST {
             sArray.add(fileCheck.nextLine());
         }
     }
-
+    //This method stores every line of the text file into an array list, converts those values to doubles, then adds them together
     public static void parse() {
         for (int i = 0; i < sArray.size(); i++) {
             String[] dataArray;
@@ -26,8 +28,8 @@ public class InterestAssignmentTEST {
             Double[] dArray = new Double[dataArray.length];
             for (int j = 0; j < dataArray.length - 2; j++) {
                 dArray[i] = Double.parseDouble(dataArray[i + 2]);
-                System.out.println(dArray[j]);
             }
+            System.out.println(dArray[i]);
         }
     }
 
