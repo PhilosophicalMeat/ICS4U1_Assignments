@@ -5,42 +5,67 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.*;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+
 
 public class InterestAssignment{
-    private static ArrayList <String> arrayList = new ArrayList();
-    private static void main(String[] args) throws IOException{
-        String fileAddress = "C:\\Users\\Ethan\\Desktop\\Project01Data(1)";
-        String[] dataArray = new String[5];
-        //Creating file
-        File dataFile = openFile(fileAddress);
-        //storing file in String array (row-by-row)
-        fillArray(dataFile,dataArray);
+    public static void main(String[] args) throws IOException{
+        File dataFile = new File("C:\\Users\\Ethan\\Desktop\\AccountDailyBalances.txt");
+        File interestFile = new File("C:\\Users\\Desktop\\MonthlyAccountInterest.txt");
+        String[] interestTypes = {"CMI", "SMI", "STF", "CDI", "SDI"};
+        double[] interestRates = {0.5, 0.25, 2.25, 2.0, 2.5};   //these values are percentages(ie. 0.5 = 0.5%)
+        String[] data = new String[5];
+        readNextAccount(data, dataFile);
+        String[] idArray = new String[5];
+        String[] values = new String[5];
+        splitArray(data,idArray,values);
+        String[][] depositsArray = new String[5][31];
+        for (int i = 0; i < values.length; i++) {
+            depositsArray[i] = values[i].split(",");
+        }
+        System.out.println(depositsArray[0][18]);
     }
-    private static File openFile(String address){
-        File tempFile = new File(address);
-        return tempFile;
-    }
-    private static void fillArray(File tempFile, String[] array) throws IOException{
-        int i = 0;
-        Scanner fileCheck = new Scanner(tempFile);
-        while(fileCheck.hasNext()){
-            arrayList.add(fileCheck.nextLine());//
-            i++;
+
+    public static void readNextAccount(String[] accArray, File dataFile) throws IOException {
+        Scanner fileCheck = new Scanner(dataFile);
+        for (int i = 0; fileCheck.hasNext(); i++) {
+            accArray[i] = fileCheck.nextLine();
         }
     }
-    private static void parseLine() {
-        for (int i = 0; i < arrayList.size(); i++) {
-            String[] dataArray;
-            dataArray = arrayList.get(i).split(",");
-            int dataParse = Integer.parseInt(dataArray[0]);
-            String dString = dataArray[1];
-            Double[] dArray = new Double[dataArray.length];
-            for (int j = 0; j < dataArray.length-2; j++) {
-                dArray[i] = Double.parseDouble(dataArray[i+2]);
-            }
+    public static void splitArray(String[] oArray, String[] idArray, String[] values){
+        for (int i = 0; i < oArray.length; i++) {
+            idArray[i] = oArray[i].substring(0,10);
+        }
+        for (int i = 0; i < oArray.length; i++) {
+            values[i] = oArray[i].substring(11);
         }
     }
 
+    public static double calculateInterest(String[][] depositsArray, String[] idArray) throws NumberFormatException{
+        double[][] dValArray = new double[depositsArray.length][depositsArray[0].length];
+        for (int i = 0; i < depositsArray.length; i++) {
+            for (int j = 0; j < depositsArray[i].length; j++) {
+                dValArray[i][j] = Double.parseDouble(depositsArray[i][j]);
+            }
+        }
+        //Finding min deposit for each account
+        double min = 0;
+        double[] minArray = new double[dValArray.length];
+        for (int i = 0; i < dValArray.length; i++) {
+            for (int j = 0; j < dValArray[i].length; j++) {
+                for (int k = 0; k < dValArray[i].length; k++) {
+                    if(dValArray[i][k] < dValArray[i][j]){
+                        minArray[i] = dValArray[i][k];
+                    }
+                }
+            }
+        }
+        //Calculate interest for each account using min and interest rate (find using idArray)
+        double dInterest = 0;
+
+        return dInterest;
+    }
+
+    public static void writeAccountInterest (){
+
+    }
 }
