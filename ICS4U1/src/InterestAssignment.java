@@ -18,11 +18,13 @@ public class InterestAssignment{
         String[] idArray = new String[5];
         String[] values = new String[5];
         splitArray(data,idArray,values);
-        String[][] depositsArray = new String[5][31];
+        String[][] balanceArray = new String[5][31];
+        double[] interestArray = new double[5];
         for (int i = 0; i < values.length; i++) {
-            depositsArray[i] = values[i].split(",");
+            balanceArray[i] = values[i].split(",");
         }
-        System.out.println(depositsArray[0][18]);
+        calculateInterest(balanceArray,idArray,interestArray);
+        
     }
 
     public static void readNextAccount(String[] accArray, File dataFile) throws IOException {
@@ -40,15 +42,14 @@ public class InterestAssignment{
         }
     }
 
-    public static double calculateInterest(String[][] depositsArray, String[] idArray) throws NumberFormatException{
-        double[][] dValArray = new double[depositsArray.length][depositsArray[0].length];
-        for (int i = 0; i < depositsArray.length; i++) {
-            for (int j = 0; j < depositsArray[i].length; j++) {
-                dValArray[i][j] = Double.parseDouble(depositsArray[i][j]);
+    public static void calculateInterest(String[][] balanceArray, String[] idArray, double[] interestArray) throws NumberFormatException{
+        double[][] dValArray = new double[balanceArray.length][balanceArray[0].length];
+        for (int i = 0; i < balanceArray.length; i++) {
+            for (int j = 0; j < balanceArray[i].length; j++) {
+                dValArray[i][j] = Double.parseDouble(balanceArray[i][j]);
             }
         }
-        //Finding min deposit for each account
-        double min = 0;
+        //Finding min balance for each account
         double[] minArray = new double[dValArray.length];
         for (int i = 0; i < dValArray.length; i++) {
             for (int j = 0; j < dValArray[i].length; j++) {
@@ -60,9 +61,32 @@ public class InterestAssignment{
             }
         }
         //Calculate interest for each account using min and interest rate (find using idArray)
-        double dInterest = 0;
-
-        return dInterest;
+        String[] accType = new String[idArray.length];
+        //formula: A = P(1+r/n)^nt
+        double dailyInterest = 0;
+        for (int i = 0; i < minArray.length; i++) {
+            accType[i] = idArray[i].substring(8,10);
+            if (accType[i] == "CMI") interestArray[i] = minArray[i]*(1.005);
+            else if(accType[i] == "SMI") interestArray[i] = minArray[i]*(1.0225);
+            else if(accType[i] == "CDI"){
+                for (int j = 0; j < dValArray[i].length; j++) {
+                    dailyInterest = dValArray[i][j]*(1.0025);
+                    interestArray[i] += dailyInterest;
+                }
+            }
+            else if(accType[i] == "SDI"){
+                for (int j = 0; j < dValArray[i].length; j++) {
+                    dailyInterest = dValArray[i][j]*(1.02);
+                    interestArray[i] += dailyInterest;
+                }
+            }
+            else if(accType[i] == "STF"){
+                for (int j = 0; j < dValArray[i].length; j++) {
+                    dailyInterest = dValArray[i][j]*(1.025);
+                    interestArray[i] += dailyInterest;
+                }
+            }
+        }
     }
 
     public static void writeAccountInterest (){
