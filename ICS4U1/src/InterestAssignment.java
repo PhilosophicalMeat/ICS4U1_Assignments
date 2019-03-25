@@ -24,6 +24,7 @@ public class InterestAssignment{
             balanceArray[i] = values[i].split(",");
         }
         calculateInterest(balanceArray,idArray,interestArray);
+        roundDouble(interestArray);
         writeAccountInterest(interestArray,idArray);
 
     }
@@ -51,7 +52,7 @@ public class InterestAssignment{
             }
         }
         //Finding min balance for each account
-        double[] minArray = new double[dValArray.length];
+        double[] minArray = new double[idArray.length];
         for (int i = 0; i < dValArray.length; i++) {
             for (int j = 0; j < dValArray[i].length; j++) {
                 for (int k = 0; k < dValArray[i].length; k++) {
@@ -69,26 +70,29 @@ public class InterestAssignment{
             accType[i] = idArray[i].substring(7, 10);
             System.out.println(accType[i]);
         }
-        for (int i = 0; i < minArray.length; i++) {
-            if (accType[i] == "CMI") interestArray[i] = minArray[i] * (1.005);
-            else if (accType[i] == "SMI") interestArray[i] = minArray[i] * (1.0225);
-            else if (accType[i] == "CDI") {
-                for (int j = 0; j < dValArray[i].length; j++) {
-                    dailyInterest = dValArray[i][j] * (1.0025);
-                    interestArray[i] += dailyInterest;
-                }
+
+        for (int i = 0; i < accType.length; i++) {
+            switch(accType[i]){
+                case "CMI": interestArray[i] = minArray[i] * 1.005;
+                case "CDI":
+                    for (int j = 0; j < dValArray[i].length; j++) {
+                        interestArray[i] += dValArray[i][j] * 1.0025;
+                    }
+                case "SMI": interestArray[i] = minArray[i] * 1.0225;
+                case "SDI":
+                    for (int j = 0; j < dValArray[i].length; j++) {
+                        interestArray[i] += dValArray[i][j] * 1.02;
+                    }
+                case "STF":
+                    for (int j = 0; j < dValArray[i].length; j++) {
+                        interestArray[i] += dValArray[i][j] * 1.025;
+                    }
             }
-            else if (accType[i] == "SDI") {
-                for (int j = 0; j < dValArray[i].length; j++) {
-                    dailyInterest = dValArray[i][j] * (1.02);
-                    interestArray[i] += dailyInterest;
-                }
-            }
-            else if (accType[i] == "STF") {
-                for (int j = 0; j < dValArray[i].length; j++) {
-                    interestArray[i] += (dValArray[i][j] *(1.025));
-                }
-            }
+        }
+    }
+    public static void roundDouble(double[] interestArray){
+        for (int i = 0; i < interestArray.length; i++) {
+            interestArray[i] = (Math.round(interestArray[i]*(Math.pow(10,2))))/(Math.pow(10,2));
         }
     }
 
@@ -99,7 +103,7 @@ public class InterestAssignment{
         String data = "";
         String[] sortedDataArray = new String[interestArray.length];
         for (int i = 0; i < sortedDataArray.length; i++) {
-            sortedDataArray[i] = "Account #: " +idArray[i]+ "      Interest: $" +interestArray[i];
+            sortedDataArray[i] = "Account #: " +idArray[i]+ "      Interest: $" +(interestArray[i]);
             fileWriter.println(sortedDataArray[i]);
         }
         fileWriter.close();
