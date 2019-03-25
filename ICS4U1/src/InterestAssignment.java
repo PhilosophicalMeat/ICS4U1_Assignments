@@ -9,8 +9,8 @@ import java.io.*;
 
 public class InterestAssignment{
     public static void main(String[] args) throws IOException{
-        File dataFile = new File("C:\\Users\\Ethan\\Desktop\\AccountDailyBalances.txt");
-        File interestFile = new File("C:\\Users\\Desktop\\MonthlyAccountInterest.txt");
+        String accFileOrigin = "C:\\Users\\Ethan\\Desktop\\AccountDailyBalances.txt";
+        File dataFile = new File(accFileOrigin);
         String[] interestTypes = {"CMI", "SMI", "STF", "CDI", "SDI"};
         double[] interestRates = {0.5, 0.25, 2.25, 2.0, 2.5};   //these values are percentages(ie. 0.5 = 0.5%)
         String[] data = new String[5];
@@ -24,7 +24,8 @@ public class InterestAssignment{
             balanceArray[i] = values[i].split(",");
         }
         calculateInterest(balanceArray,idArray,interestArray);
-        
+        writeAccountInterest(interestArray,idArray);
+
     }
 
     public static void readNextAccount(String[] accArray, File dataFile) throws IOException {
@@ -65,31 +66,42 @@ public class InterestAssignment{
         //formula: A = P(1+r/n)^nt
         double dailyInterest = 0;
         for (int i = 0; i < minArray.length; i++) {
-            accType[i] = idArray[i].substring(8,10);
-            if (accType[i] == "CMI") interestArray[i] = minArray[i]*(1.005);
-            else if(accType[i] == "SMI") interestArray[i] = minArray[i]*(1.0225);
-            else if(accType[i] == "CDI"){
+            accType[i] = idArray[i].substring(7, 10);
+            System.out.println(accType[i]);
+        }
+        for (int i = 0; i < minArray.length; i++) {
+            if (accType[i] == "CMI") interestArray[i] = minArray[i] * (1.005);
+            else if (accType[i] == "SMI") interestArray[i] = minArray[i] * (1.0225);
+            else if (accType[i] == "CDI") {
                 for (int j = 0; j < dValArray[i].length; j++) {
-                    dailyInterest = dValArray[i][j]*(1.0025);
+                    dailyInterest = dValArray[i][j] * (1.0025);
                     interestArray[i] += dailyInterest;
                 }
             }
-            else if(accType[i] == "SDI"){
+            else if (accType[i] == "SDI") {
                 for (int j = 0; j < dValArray[i].length; j++) {
-                    dailyInterest = dValArray[i][j]*(1.02);
+                    dailyInterest = dValArray[i][j] * (1.02);
                     interestArray[i] += dailyInterest;
                 }
             }
-            else if(accType[i] == "STF"){
+            else if (accType[i] == "STF") {
                 for (int j = 0; j < dValArray[i].length; j++) {
-                    dailyInterest = dValArray[i][j]*(1.025);
-                    interestArray[i] += dailyInterest;
+                    interestArray[i] += (dValArray[i][j] *(1.025));
                 }
             }
         }
     }
 
-    public static void writeAccountInterest (){
-
+    public static void writeAccountInterest (double[] interestArray, String[] idArray) throws IOException{
+        //creates the file and buffered writer for said file all at once
+        PrintWriter fileWriter = new PrintWriter(new FileWriter("C:\\Users\\Ethan\\Desktop\\MonthlyAccountInterest.txt"));
+        //creating and filling an array with all of the sorted information & making a string that will fill the text file
+        String data = "";
+        String[] sortedDataArray = new String[interestArray.length];
+        for (int i = 0; i < sortedDataArray.length; i++) {
+            sortedDataArray[i] = "Account #: " +idArray[i]+ "      Interest: $" +interestArray[i];
+            fileWriter.println(sortedDataArray[i]);
+        }
+        fileWriter.close();
     }
 }
