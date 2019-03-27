@@ -1,3 +1,4 @@
+import java.util.Random;
 public class ArrayExercises {
     public static void main(String[] args) {
         //Exercise 1
@@ -5,7 +6,7 @@ public class ArrayExercises {
         smallestDifference(integerArray);
 
         //Exercise 2
-        double[][] exTwoArray = new double[10][10];
+        int[][] exTwoArray = new int[10][10];
         fill2DArray(exTwoArray);
         maxRowSum(exTwoArray);
 
@@ -34,21 +35,24 @@ public class ArrayExercises {
         int difference = minTwo - min;
         System.out.println("Distance between the values: " +difference);
     }
-    public static void fill2DArray(double[][]dArray){
+    public static void fill2DArray(int[][]dArray){
+        Random rand = new Random();
+        int val = rand.nextInt(100);
         for (int i = 0; i < dArray.length; i++) {
             for (int j = 0; j < dArray[i].length; j++) {
-                dArray[i][j] = Math.random();
+                dArray[i][j] = val;
+                val = rand.nextInt(100);
             }
         }
     }
-    public static void maxRowSum(double[][] dArray){
-        double[] rowSums = new double[dArray.length];
-        for (int i = 0; i < dArray.length; i++) {
-            for (int j = 0; j < dArray[i].length; j++) {
-                rowSums[i] += dArray[i][j];
+    public static void maxRowSum(int[][] iArray){
+        int[] rowSums = new int[iArray.length];
+        for (int i = 0; i < iArray.length; i++) {
+            for (int j = 0; j < iArray[i].length; j++) {
+                rowSums[i] += iArray[i][j];
             }
         }
-        double max = 0;
+        int max = 0;
         int maxLoc = 0;
         for (int i = 0; i < rowSums.length; i++) {
             for (int j = 0; j < rowSums.length; j++) {
@@ -56,8 +60,7 @@ public class ArrayExercises {
                 maxLoc = (rowSums[j] > rowSums[i]) ? j : maxLoc;
             }
         }
-        double roundedVal = Math.round(max*(Math.pow(10,2))); //multplies by desired # of decimals
-        double resultVal = roundedVal/(Math.pow(10,2));
-        System.out.println("Row with max sum: " +maxLoc+ "\n" + "Sum: " +resultVal);
+
+        System.out.println("Row with max sum: " +maxLoc+ "\n" + "Sum: " +max);
     }
 }
