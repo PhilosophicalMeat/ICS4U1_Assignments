@@ -7,7 +7,8 @@ public class ArrayExercises {
 
         //Exercise 2
         int[][] exTwoArray = new int[10][10];
-        fill2DArray(exTwoArray);
+        int exTwoBound = 100;
+        fill2DArray(exTwoArray, exTwoBound);
         maxRowSum(exTwoArray);
 
 
@@ -35,13 +36,13 @@ public class ArrayExercises {
         int difference = minTwo - min;
         System.out.println("Distance between the values: " +difference);
     }
-    public static void fill2DArray(int[][]dArray){
+    public static void fill2DArray(int[][]dArray, int bound){
         Random rand = new Random();
-        int val = rand.nextInt(100);
+        int val = rand.nextInt(bound);
         for (int i = 0; i < dArray.length; i++) {
             for (int j = 0; j < dArray[i].length; j++) {
                 dArray[i][j] = val;
-                val = rand.nextInt(100);
+                val = rand.nextInt(bound);
             }
         }
     }
