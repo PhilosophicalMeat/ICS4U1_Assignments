@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.Random;
 public class ArrayExercises {
     public static void main(String[] args) {
@@ -10,6 +11,12 @@ public class ArrayExercises {
         int exTwoBound = 100;
         fill2DArray(exTwoArray, exTwoBound);
         maxRowSum(exTwoArray);
+
+        //Exercise 3
+        int[] exThreeArray = new int[10];
+        int exThreeBound = 50;
+        fillArray(exThreeArray, exThreeBound);
+        searchArray(exThreeArray);
 
 
     }
@@ -36,12 +43,21 @@ public class ArrayExercises {
         int difference = minTwo - min;
         System.out.println("Distance between the values: " +difference);
     }
-    public static void fill2DArray(int[][]dArray, int bound){
+    public static void fillArray(int[] iArray, int bound){
         Random rand = new Random();
         int val = rand.nextInt(bound);
-        for (int i = 0; i < dArray.length; i++) {
-            for (int j = 0; j < dArray[i].length; j++) {
-                dArray[i][j] = val;
+        for (int i = 0; i < iArray.length; i++) {
+            iArray[i] = val;
+            val = rand.nextInt(bound);
+            System.out.println("Array Value #" +(i+1)+ ": " +val);
+        }
+    }
+    public static void fill2DArray(int[][]iArray, int bound){
+        Random rand = new Random();
+        int val = rand.nextInt(bound);
+        for (int i = 0; i < iArray.length; i++) {
+            for (int j = 0; j < iArray[i].length; j++) {
+                iArray[i][j] = val;
                 val = rand.nextInt(bound);
             }
         }
@@ -63,5 +79,21 @@ public class ArrayExercises {
         }
 
         System.out.println("Row with max sum: " +maxLoc+ "\n" + "Sum: " +max);
+    }
+    public static void searchArray(int[] iArray){
+        Scanner input = new Scanner(System.in);
+        int target;
+        int targetLoc = 0;
+        boolean targetFound = false;
+        System.out.println("Enter the value you wish to find");
+        target = input.nextInt();
+        for (int i = 0; i < iArray.length; i++) {
+            if(iArray[i] == target){
+                targetFound = true;
+                targetLoc = i;
+            }
+        }
+        if(targetFound == true) System.out.println("Target found at location " +targetLoc);
+        else System.out.println("Target not found in data");
     }
 }
