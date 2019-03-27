@@ -83,17 +83,23 @@ public class ArrayExercises {
     public static void searchArray(int[] iArray){
         Scanner input = new Scanner(System.in);
         int target;
-        int targetLoc = 0;
         boolean targetFound = false;
         System.out.println("Enter the value you wish to find");
         target = input.nextInt();
         for (int i = 0; i < iArray.length; i++) {
             if(iArray[i] == target){
                 targetFound = true;
-                targetLoc = i;
             }
         }
-        if(targetFound == true) System.out.println("Target found at location " +targetLoc);
-        else System.out.println("Target not found in data");
+        if(targetFound){
+            System.out.println("Target found at location(s): ");
+            for (int i = 0; i < iArray.length; i++) {
+                if(iArray[i] == target)
+                System.out.println(i);
+            }
+        }
+        else{
+            System.out.println("Target not found in data");
+        }
     }
 }
