@@ -1,12 +1,13 @@
 import java.io.*;
 import java.util.Scanner;
+import java.lang.String;
 public class StoreStatistics {
     public static void main(String[] args) throws IOException{
         File storeData = new File("C:\\Users\\Ethan\\Desktop\\Project02Data (1).txt");
         Scanner fileChecker = new Scanner(storeData);
         String[][] sDataArraySorted = new String[17095][4];
         //Store each line of data into a 2D array
-        fillString2DArray(fileChecker, sDataArraySorted);
+        FillString2DArray(fileChecker, sDataArraySorted);
         //Create an array to identify store locations based on their three-digit ID
         String[][] StoreList = {
                 {"101", "St.John's, Newfoundland"},
@@ -40,38 +41,62 @@ public class StoreStatistics {
                 {"PR811", "Culvert Liner"}
         };
         String[] MonthList = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Total","%"};
+        //Sorted store locations
+
+        PrintStoreDataSorted(sDataArraySorted, ProductList, MonthList, "101");
+
         //Sorting the dates into seperate arrays by day, month, and year. Also sorting based on store loc
-        String[] year = new String[17095], month = new String[17095], day = new String[17095];
+        /*String[] year = new String[17095], month = new String[17095], day = new String[17095];
         for (int i = 0; i < 17095; i++) {
             year[i] = sDataArraySorted[i][1].substring(0,4);
             month[i] = sDataArraySorted[i][1].substring(4,6);
-            day[i] = sDataArraySorted[i][1].substring(6,8);
+            day[i] = sDataArraySorted[i][1].substring(6,8);*/
 /*
             System.out.println("Year #" +i+ ": " +year[i]+ "     Month #" +i+ ": " +month[i]+ "     Day #" +i+ ": " +day[i]);
 */
-        }
-        //unfinished code for sorting 101 stores into an array
-        String[][] sJohnStoreLocs = new String[17095][4]; //locations of stores in st.johns, newfoundland
-        String tempData = "", data = "";
-        for (int i = 0; i < 17095; i++) {
-            for (int j = i; j < 17095; j++) {
-                if(sDataArraySorted[j][0] == "101" && j>i){
-                    sJohnStoreLocs[i] = sDataArraySorted[i];
-                    i = j;
-                }
-            }
-        }
-
-        //Test: Print the formatted data for stores with ID 101
-
-
-
     }
 
-    public static void fillString2DArray(Scanner fileChecker, String[][] sDataArray){
+    public static void FillString2DArray(Scanner fileChecker, String[][] sDataArray){
         for (int i = 0; fileChecker.hasNext(); i++) {
             sDataArray[i] = fileChecker.nextLine().split(",");
         }
     }
 
+    public static void PrintStoreDataSorted(String[][]sDataOrigin, String[][] sProductList, String[] sMonthList, String storeID){
+        int destLength = 0;
+        int destCol = sDataOrigin[0].length;
+        String[] sPrev = {""};
+        for (int i = 0; i < sDataOrigin.length; i++) {
+            destLength += (sDataOrigin[i][0].equals("101")) ? 1:0;
+        }
+        String[][] sDataDestination = new String[destLength][destCol];
+        String[] destYear = new String[destLength], destMonth = new String[destLength], destDay = new String[destLength];
+        String[] destProduct = new String[destLength];
+        int sDataPos = 0;
+        for (int i = 0; i < sDataOrigin.length; i++) {
+            /*System.out.print(sDataOrigin[i][0]);
+            if(sDataOrigin[i][0].equals("101")){
+                System.out.println(" Location Tagged");
+            }
+            else{
+                System.out.println();
+            }*/
+            if(sDataOrigin[i][0].equals("101") && sDataOrigin[i] != sPrev){
+                for (int j = 0; j < sDataOrigin[i].length; j++) {
+                    //Adding the value to its array
+                    sDataDestination[sDataPos][j] = sDataOrigin[i][j];
+                    //dividing the dates into years, months, and days
+                    destYear[sDataPos] = sDataOrigin[i][1].substring(0,4);
+                    destMonth[sDataPos] = sDataOrigin[i][1].substring(4,6);
+                    destDay[sDataPos] = sDataOrigin[i][1].substring(6,8);
+                    //determining the product sold at the specified store
+
+
+                    System.out.print(sDataDestination[sDataPos][j]+ "   ");
+                }
+                System.out.println();
+                sDataPos+=1;
+            }
+        }
+    }
 }
