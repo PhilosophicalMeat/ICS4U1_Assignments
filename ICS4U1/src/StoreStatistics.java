@@ -9,7 +9,7 @@ public class StoreStatistics {
         //Store each line of data into a 2D array
         FillString2DArray(fileChecker, sDataArraySorted);
         //Create an array to identify store locations based on their three-digit ID
-        String[][] StoreList = {
+        String[][] storeList = {
                 {"101", "St.John's, Newfoundland"},
                 {"102", "Halifax, Nova Scotia"},
                 {"103", "Fredericton, New Brunswick"},
@@ -41,19 +41,7 @@ public class StoreStatistics {
                 {"PR811", "Culvert Liner"}
         };
         String[] MonthList = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Total","%"};
-        //Sorted store locations
-
-        PrintStoreDataSorted(sDataArraySorted, ProductList, MonthList, "101");
-
-        //Sorting the dates into seperate arrays by day, month, and year. Also sorting based on store loc
-        /*String[] year = new String[17095], month = new String[17095], day = new String[17095];
-        for (int i = 0; i < 17095; i++) {
-            year[i] = sDataArraySorted[i][1].substring(0,4);
-            month[i] = sDataArraySorted[i][1].substring(4,6);
-            day[i] = sDataArraySorted[i][1].substring(6,8);*/
-/*
-            System.out.println("Year #" +i+ ": " +year[i]+ "     Month #" +i+ ": " +month[i]+ "     Day #" +i+ ": " +day[i]);
-*/
+        PrintStoreDataSorted(sDataArraySorted, ProductList, MonthList, "101", storeList);
     }
 
     public static void FillString2DArray(Scanner fileChecker, String[][] sDataArray){
@@ -62,7 +50,7 @@ public class StoreStatistics {
         }
     }
 
-    public static void PrintStoreDataSorted(String[][]sDataOrigin, String[][] sProductList, String[] sMonthList, String storeID){
+    public static void PrintStoreDataSorted(String[][]sDataOrigin, String[][] sProductList, String[] sMonthList, String storeID, String[][] storeList){
         int destLength = 0;
         int destCol = sDataOrigin[0].length;
         for (int i = 0; i < sDataOrigin.length; i++) {
@@ -76,15 +64,12 @@ public class StoreStatistics {
         int sDataPos = 0;
         for (int i = 0; i < sDataOrigin.length; i++) {
             if(sDataOrigin[i][0].equals(storeID)){
-                System.out.println("Value #" +i);
                 destMonth[sDataPos] = Integer.parseInt(sDataOrigin[i][1].substring(4,6)); //the only necessary value in the date
                 destProduct[sDataPos] = sDataOrigin[i][2];
                 destPrice[sDataPos] = Double.parseDouble(sDataOrigin[i][3]);
                 for (int j = 0; j < destCol; j++) {
                     sDataDestination[sDataPos][j] = sDataOrigin[i][j];
                 }
-                System.out.println(destMonth[sDataPos]+ "   " +destProduct[sDataPos]+ "     " +destPrice[sDataPos]);
-
                 sDataPos+=1;
             }
         }
@@ -106,43 +91,96 @@ public class StoreStatistics {
                 case "PR811" : sDataPrintDestination[11][destMonth[i]-1] += destPrice[i];
             }
         }
+        String storeLoc = "";
+        for (int i = 0; i < storeList.length; i++) {
+            if(storeList[i][0].equals(storeID)){
+                storeLoc = storeList[i][1];
+            }
+        }
+        System.out.println("2016 SALES for ABC ROAD SYSTEMS LTD. Store " +storeID+ ": " +storeLoc);
         //I'm getting close, I just need to figure out how to control the spacing based on the size of the values. Maybe I could have a set number
         //of character permitted for each row, and then fill the rest of the space with blanks? The way I see it, I'd have to convert the doubles
         //back into Strings... I can make it work
         System.out.print("------------------- ");
         for (int i = 0; i < sMonthList.length; i++) {
-            while (sMonthList[i].length() < 10) {
+            while (sMonthList[i].length() < 20) {
                 sMonthList[i] += " ";
             }
             System.out.print(sMonthList[i]);
         }
-        double[] sumArray = new double[sProductList.length];
-        String[] sSumArray = new String[sProductList.length];
+        System.out.println();
+        double sum = 0; //sum of entire array
+        double[] productSumArray = new double[sProductList.length], productSumPercentArray = new double[sProductList.length], monthSumArray = new double[sMonthList.length],
+                monthSumPercentArray = new double[sMonthList.length];
+        String[] sProductSumArray = new String[sProductList.length], sProductSumPercentArray = new String[sProductList.length],
+                sMonthSumArray = new String[sMonthList.length], sMonthSumPercentArray = new String[sMonthList.length];
+        for (int i = 0; i < sDataPrintDestination.length; i++) {
+            for (int j = 0; j < sDataPrintDestination[i].length; j++) {
+                sum += sDataPrintDestination[i][j];
+            }
+        }
         for (int i = 0; i < 12; i++) {
             while(sProductList[i][1].length() < 20){ //These have to more than a little longer
                 sProductList[i][1] += " ";
             }
             System.out.print(sProductList[i][1]);
             for (int j = 0; j < 12; j++) {
-                sumArray[i] += sDataPrintDestination[j][i];
-                sumArray[i] *= 100;
-                sumArray[i] = Math.round(sumArray[i]);
-                sumArray[i] /= 100;
-                sSumArray[i] = Double.toString(sumArray[i]);
+                //fill the product sum array
+                productSumArray[i] += sDataPrintDestination[j][i];
+                productSumArray[i] *= 100;
+                productSumArray[i] = Math.round(productSumArray[i]);
+                productSumArray[i] /= 100;
+                sProductSumArray[i] = Double.toString(productSumArray[i]);
+                //fill the monthly sum array
+                monthSumArray[i] += sDataPrintDestination[i][j];
+                monthSumArray[i] *= 100;
+                monthSumArray[i] = Math.round(monthSumArray[i]);
+                monthSumArray[i] /= 100;
+                sMonthSumArray[i] = Double.toString(monthSumArray[i]);
+                //fill array for product sum percent
+                productSumPercentArray[i] = Math.round(productSumArray[i]/sum * 10000);
+                productSumPercentArray[i] /= 100;
+                sProductSumPercentArray[i] = Double.toString(productSumPercentArray[i]);
+                //fill array for monthly sum percent
+                monthSumPercentArray[i] = Math.round(monthSumArray[i]/sum*10000);
+                monthSumPercentArray[i] /= 100;
+                sMonthSumPercentArray[i] = Double.toString(monthSumPercentArray[i]);
+
                 sDataPrintDestination[j][i] *= 100;
                 sDataPrintDestination[j][i] = Math.round(sDataPrintDestination[j][i]);
                 sDataPrintDestination[j][i] /= 100;
                 String sPrint = Double.toString(sDataPrintDestination[j][i]);
-                while (sPrint.length() < 10) {
+                while (sPrint.length() < 20) {
                     sPrint += " ";
                 }
                 System.out.print(sPrint);
+
             }
-            while(sSumArray[i].length() < 12){
-                sSumArray[i] += " ";
+            while(sProductSumArray[i].length() < 20){
+                sProductSumArray[i] += " ";
             }
-            System.out.print(sSumArray);
+            System.out.print(sProductSumArray[i]);
+
+            while(sProductSumPercentArray[i].length() < 10){
+                sProductSumPercentArray[i] += " ";
+            }
+            System.out.print(sProductSumPercentArray[i]);
             System.out.println();
+        }
+        System.out.print("Sum                 ");
+        for (int i = 0; i < 12; i++) {
+            while(sMonthSumArray[i].length() < 20){
+                sMonthSumArray[i] += " ";
+            }
+            System.out.print(sMonthSumArray[i]);
+        }
+        System.out.println();
+        System.out.print("%                   ");
+        for (int i = 0; i < 12; i++) {
+            while(sMonthSumPercentArray[i].length() < 20){
+                sMonthSumPercentArray[i] += " ";
+            }
+            System.out.print(sMonthSumPercentArray[i]);
         }
     }
 }
