@@ -81,7 +81,7 @@ public class InterestAssignment{
                     }
                 case "STF":
                     for (int j = 0; j < dValArray[i].length; j++) {
-                        interestArray[i] += dValArray[i][j] * 1.025 / 365;
+                        interestArray[i] = minArray[i] * 1.025 / 12;
                     }
             }
         }
