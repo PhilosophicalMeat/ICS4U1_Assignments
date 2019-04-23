@@ -69,19 +69,19 @@ public class InterestAssignment{
 
         for (int i = 0; i < accType.length; i++) {
             switch(accType[i]){
-                case "CMI": interestArray[i] = minArray[i] * 1.005;
+                case "CMI": interestArray[i] = minArray[i] * 1.005 / 12;
                 case "CDI":
                     for (int j = 0; j < dValArray[i].length; j++) {
-                        interestArray[i] += dValArray[i][j] * 1.0025;
+                        interestArray[i] += dValArray[i][j] * 1.0025 / 365;
                     }
-                case "SMI": interestArray[i] = minArray[i] * 1.0225;
+                case "SMI": interestArray[i] = minArray[i] * 1.0225 / 12;
                 case "SDI":
                     for (int j = 0; j < dValArray[i].length; j++) {
-                        interestArray[i] += dValArray[i][j] * 1.02;
+                        interestArray[i] += dValArray[i][j] * 1.02 / 365;
                     }
                 case "STF":
                     for (int j = 0; j < dValArray[i].length; j++) {
-                        interestArray[i] += dValArray[i][j] * 1.025;
+                        interestArray[i] += dValArray[i][j] * 1.025 / 365;
                     }
             }
         }
