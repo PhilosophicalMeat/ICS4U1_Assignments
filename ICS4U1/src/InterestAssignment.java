@@ -61,7 +61,6 @@ public class InterestAssignment{
         //Calculate interest for each account using min and interest rate (find using idArray)
         String[] accType = new String[idArray.length];
         //formula: A = P(1+r/n)^nt
-        double dailyInterest = 0;
         for (int i = 0; i < minArray.length; i++) {
             accType[i] = idArray[i].substring(7, 10);
             System.out.println(accType[i]);

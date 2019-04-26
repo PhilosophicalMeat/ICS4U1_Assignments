@@ -3,9 +3,9 @@ import java.util.Random;
 public class ArrayExercises {
     public static void main(String[] args) {
         //Exercise 1
-        /*System.out.println("Exercise 1");
+        System.out.println("Exercise 1");
         int[] integerArray = {1, 4, 6, 7, 9, 2};
-        smallestDifference(integerArray);*/
+        smallestDifference(integerArray);
 
         //Exercise 2
         /*System.out.println("Exercise 2");
@@ -40,33 +40,23 @@ public class ArrayExercises {
         searchStringArray(exFourArray);*/
 
         //Exercise 5
-        System.out.println("Exercise 5");
 
 
 
     }
+    //this needs to be finished
     public static void smallestDifference(int[] intArray){
-        //Find smallest value in array
-        int minLoc = 0;
-        int min = intArray[0];
+        //sort the array from least to greatest
         for (int i = 0; i < intArray.length; i++) {
-            for (int j = 0; j < intArray.length; j++) {
-                min = (intArray[j] < intArray[i]) ? intArray[j] : min;
-                minLoc = (intArray[j] < intArray[i]) ? j : minLoc;
+            for (int j = i; j < intArray.length; j++) {
+                int temp = intArray[j];
+                if(intArray[i] > intArray[j]){
+                    intArray[j] = intArray[i];
+                    intArray[i] = temp;
+                }
             }
         }
-        System.out.println("Smallest Value: " +min);
-        //Find second smallest value
-        int minTwo = intArray[1];
-        for (int i = 0; i < intArray.length; i++) {
-            for (int j = 0; j < intArray.length; j++) {
-                minTwo = (intArray[j] < intArray[i] && intArray[j] > min) ? intArray[j] : minTwo;
-            }
-        }
-        System.out.println("Second smallest value: " +minTwo);
-        //finding the distance between the smallest and second smallest values
-        int difference = minTwo - min;
-        System.out.println("Distance between the values: " +difference);
+        //
     }
     public static void fillArray(int[] iArray, int bound){
         Random rand = new Random();
