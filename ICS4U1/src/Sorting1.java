@@ -1,3 +1,6 @@
+import com.sun.org.apache.bcel.internal.generic.IADD;
+import com.sun.org.apache.bcel.internal.generic.ISHL;
+
 public class Sorting1 {
     public static void main(String[] args) {
         int[] iArray = {45, 22, 2, 33, 13, 48, 7, 19, 20, 39};
@@ -10,6 +13,10 @@ public class Sorting1 {
         tenIntegerShiftUpOne(iArray);
         //calling tenIntegerShiftDownOne method
         tenIntegerShiftDownOne(iArray);
+        //creating iSorted array
+        int[] iSorted = new int[iArray.length];
+        //calling renIntegerSortedFill method
+        tenIntegerSortedFill(iArray, iSorted);
     }
     //tenIntegerSwap method
     public static void tenIntegerSwap(int[] iArray){
@@ -140,5 +147,27 @@ public class Sorting1 {
             System.out.print(iArray[i]+ "   ");
         }
         System.out.println();
+    }
+    //tenIntegerSorted method
+    public static void tenIntegerSortedFill(int[] iArray, int[] iSorted) {
+        int tempVal = 0;
+        //sorting the iSorted array
+        for (int i = 0; i < iArray.length; i++) {
+            for (int j = 0; j < iArray.length; j++) {
+                if (iArray[i] < iArray[j] && i != j) {
+                    tempVal = iArray[j];
+                    iArray[j] = iArray[i];
+                    iArray[i] = tempVal;
+                }
+            }
+        }
+        //filling the sorted array
+        for (int i = 0; i < iSorted.length; i++) {
+            iSorted[i] = iArray[i];
+        }
+        //printing the values
+        for (int i = 0; i < iSorted.length; i++) {
+            System.out.println(iSorted[i]);
+        }
     }
 }
