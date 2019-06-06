@@ -29,12 +29,13 @@ public class ArrayListAssignment02 {
                 for (int i = 0; i < numCountArrayList.size(); i++) {
                     System.out.print(numCountArrayList.get(i) + " ");
                 }
+                System.out.println();
                 //counting and printing the number of copies of each unique value in the array with all inputted values
                 System.out.println("Number Of Copies");
                 for (int i = 0; i < arrayList.size(); i++) {
                     int x = 0;
                     for (int j = 0; j < numCountArrayList.size(); j++) {
-                        if(numCountArrayList.get(j) == arrayList.get(i)){
+                        if(arrayList.get(i).equals(numCountArrayList.get(j))){
                             x += 1;
                         }
                     }
@@ -55,7 +56,7 @@ public class ArrayListAssignment02 {
                     Collections.sort(numCountArrayList);
                 }
                 else{
-                    System.out.println("Invalid Entry: Value already in use.");
+                    System.out.println("Notice: Value already in use. Adding to second array.");
                     numCountArrayList.add(listVal);
                     Collections.sort(numCountArrayList);
                 }
